@@ -6,8 +6,6 @@ Combinando  FastAPI e PostgreSQL através do SQLAlchemy, o projeto foi desenvolv
 Índice
 =================
 <!--ts-->
-   * [Sobre](#Sobre)
-   * [Indice](#indice)
    * [Pré Requisitos](#pre-requisitos)
         * [Rodando a API](#-rodando-a-api-com-fastapi)
         * [Operações CRUD](#operações-crud)
