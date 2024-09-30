@@ -19,6 +19,7 @@ Base.metadata.create_all(bind=engine)
 
 # Cria o Schema Aluno
 class Aluno(BaseModel):
+    id: int | None = None
     nome: str
     email: EmailStr
 
@@ -51,7 +52,7 @@ def criar_aluno(aluno: Aluno, db: Session = Depends(get_db)):
         return db_aluno
     except Exception as e:
         print(f"Erro ao criar aluno: {e}")
-        db.rollback()  # Faz rollback para evitar problemas de transação
+        db.rollback()
         raise HTTPException(status_code=400, detail=str(e))
 
 # ler - READ - geral

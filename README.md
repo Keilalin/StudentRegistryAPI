@@ -48,7 +48,7 @@ cd arquivos_py
 
 # Ative seu ambiente virtual
 No Windows:
-    venv\Scripts\activate
+    .\venv\Scripts\Activate.ps1
     
 No macOS ou Linux:
     source venv/bin/activate
@@ -66,6 +66,7 @@ uvicorn main:app --reload
 - POST: **CREATE Aluno**
   
   **Entrada**: JSON com `nome` e `email`.
+      - Não há a necessidade de incluir o número da id, a não ser que queira.
   
   **Retorno**: `Aluno` criado.
 

@@ -1,0 +1,7 @@
+.env
+StudentRegistryAPI/
+__pycache__/
+arquivos_py/Lib/
+arquivos_py/Scripts/
+arquivos_py/__pycache__/
+arquivos_py/venv/
