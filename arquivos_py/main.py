@@ -1,17 +1,18 @@
 from typing import Optional
 
-from arquivos_py.database import Base, SessionLocal, engine
 from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel, EmailStr
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import Session
+
+from .database import Base, SessionLocal, engine
 
 app = FastAPI()
 
 
 # Cria a tabela Alunos
 class AlunoModel(Base):
-    __tablename__ = 'ALUNOS'
+    __tablename__ = 'alunos'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String, index=True)

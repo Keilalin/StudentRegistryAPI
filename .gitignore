@@ -5,6 +5,7 @@ StudentRegistryAPI/
 __pycache__/
 *.py[cod]
 *.pyo
+.ruff_cache/
 
 # Ignorar ambientes virtuais
 venv/
@@ -16,10 +17,6 @@ Scripts/
 
 # Ignorar arquivos de log
 *.log
-
-# Ignorar o arquivo do Docker Compose e imagens
-docker-compose.yml
-Dockerfile
 
 # Ignorar arquivos temporários do sistema
 *.swp
