@@ -106,3 +106,8 @@ def deletar_aluno(id: int, db: Session = Depends(get_db)):
     db.delete(aluno)
     db.commit()
     return aluno
+
+# healthcheck
+@app.get("/health")
+def health_check():
+    return {"status": "healthy"}
