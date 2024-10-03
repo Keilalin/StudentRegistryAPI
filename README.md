@@ -64,7 +64,7 @@ docker-compose up --build -d
 No servidor do fastAPI <http://localhost:8080/docs>, utilize as operações CRUD:
 
 <details>
-<summary> POST: **CREATE Aluno**</summary>
+<summary> POST: <strong> CREATE Aluno</strong></summary>
   
   **Entrada**: JSON com `nome` e `email`.
       - Não há a necessidade de incluir o número da id, a não ser que queira.
@@ -72,26 +72,26 @@ No servidor do fastAPI <http://localhost:8080/docs>, utilize as operações CRUD
   **Retorno**: `Aluno` criado. </details>
 
 <details>
-<summary>GET: **READ Alunos**</summary>
+<summary>GET: <strong>READ Alunos</strong></summary>
   
   **Retorno**: lista de alunos cadastrados.</details>
 
 <details>
-<summary>GET: **READ Aluno**</summary>
+<summary>GET: <strong>READ Aluno</strong></summary>
   
   **Entrada**: `id` do aluno para busca
   
   **Retorno**: `Aluno`</details>
 
 <details>
-<summary>PUT: **UPDATE Aluno**</summary>
+<summary>PUT: <strong>UPDATE Aluno</strong></summary>
   
   **Entrada**: JSON com `nome` e/ou `email`.
   
   **Retorno**: `Aluno` atualizado.</details>
 
 <details>
-<summary>DELETE: **DELETE Aluno**</summary>
+<summary>DELETE: <strong>DELETE Aluno</strong></summary>
   
   **Entrada**: `id` do aluno para busca
   
