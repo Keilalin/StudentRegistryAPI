@@ -24,7 +24,6 @@ jobs:
           push: true
           tags: |
             keilalinhares/studentregistryapi:v${{ github.run_number }}
-            keilalinhares/studentregistryapi:latest
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
