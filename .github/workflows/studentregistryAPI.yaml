@@ -22,7 +22,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: .
           push: true
           tags: |
             keilalinhares/studentregistryapi:v1.0.0
