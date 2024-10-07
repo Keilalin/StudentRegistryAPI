@@ -25,3 +25,17 @@ jobs:
           tags: |
             keilalinhares/studentregistryapi:v${{ github.run_number }}
             keilalinhares/studentregistryapi:latest
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          image-ref: 'docker.io/keilalinhares/studentregistryapi:v${{ github.run_number }}'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          fail-on-severity: 'CRITICAL'
+
+      - name: Upload Trivy scan results
+        uses: actions/upload-artifact@v2
+        with:
+          name: trivy-results
+          path: trivy-results.sarif
