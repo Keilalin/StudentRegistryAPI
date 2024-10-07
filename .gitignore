@@ -1,7 +1,27 @@
-.env
+
 StudentRegistryAPI/
+
+# Ignorar diretórios de cache e arquivos compilados
 __pycache__/
-arquivos_py/Lib/
-arquivos_py/Scripts/
-arquivos_py/__pycache__/
-arquivos_py/venv/
+*.py[cod]
+*.pyo
+.ruff_cache/
+
+# Ignorar ambientes virtuais
+venv/
+Lib/
+Scripts/
+
+# Ignorar arquivos de configuração específicos da máquina
+.env
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos temporários do sistema
+*.swp
+*.swo
+*.bak
+
+# VSCode settings
+.vscode/

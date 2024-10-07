@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "Alunos"
+version = "0.1.0"
+description = ""
+authors = ["keila <keilalinhares@msn.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.*"
+fastapi = {extras = ["standard"], version = "^0.115.0"}
+pipx = "^1.7.1"
+sqlalchemy = "^2.0.35"
+psycopg = {extras = ["binary"], version = "^3.2.3"}
+uvicorn = "^0.22.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-cov = "^5.0.0"
+taskipy = "^1.13.0"
+ruff = "^0.6.8"
+httpx = "^0.27.2"
+
+[tool.ruff]
+line-length = 91
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = '-p no:warnings'
+
+[tool.taskipy.tasks]
+run = 'fastapi dev arquivos_py./main.py'
+lint = 'ruff check . && ruff check . --diff'
+format ='ruff check . --fix'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

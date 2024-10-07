@@ -1,0 +1,25 @@
+# Ignorar diretórios de cache e arquivos compilados
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignorar o ambiente virtual (não precisa ser incluído na imagem Docker)
+venv/
+Lib/
+Scripts/
+
+# Ignorar arquivos de configuração locais
+.env
+
+# Ignorar arquivos de controle de versão
+.git
+.gitignore
+
+# Ignorar arquivos de configuração do editor
+.vscode/
+
+# Ignorar arquivos de log e temporários
+*.log
+*.swp
+*.swo
+*.bak
