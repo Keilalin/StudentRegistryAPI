@@ -12,7 +12,7 @@ jobs:
 
       - 
         name: Docker Login
-        docker/login-action@v3
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.user }}
           password: ${{ secrets.password }}
