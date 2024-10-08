@@ -29,7 +29,9 @@ jobs:
         uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: 'docker.io/keilalinhares/studentregistryapi:v${{ github.run_number }}'
-          severity: HIGH, CRITICAL
+          severity: |
+            'HIGH'
+            'CRITICAL'
           format: 'sarif'
           output: 'trivy-results.sarif'
           exit-code: '1'
