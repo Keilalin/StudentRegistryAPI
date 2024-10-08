@@ -26,3 +26,5 @@ COPY . /app
 USER appuser
 
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD wget --no-verbose --tries=1 --spider http://localhost:8000/health || exit 1
+
+CMD [ "poetry", "run", "uvicorn", "arquivos_py.main:app", "--host", "0.0.0.0", "--port", "8000" ]
