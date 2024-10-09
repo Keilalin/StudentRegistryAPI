@@ -45,6 +45,7 @@ jobs:
           path: trivy-results.sarif
   
   push:
+    needs: scan
     runs-on: ubuntu-latest
     steps: 
 
