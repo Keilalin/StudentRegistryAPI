@@ -1,52 +1,40 @@
-name: Build and Push Docker Image
-on:
+name: Pipeline
+on: 
   push:
     branches: main
 
 jobs:
   
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build Docker image
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.user }}
+          password: ${{ secrets.password }}
+        
+      - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: false
-          tags: keilalinhares/studentregistryapi:v${{ github.run_number }}
-
-      - name: Save Docker image as artifact
-        run: |
-          docker save keilalinhares/studentregistryapi:v${{ github.run_number }} | gzip > image.tar.gz
-      
-      - name: Upload Docker image artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: docker-image
-          path: image.tar.gz
-
+          push: true
+          tags: |
+            keilalinhares/studentregistryapi:v${{ github.run_number }}
+            keilalinhares/studentregistryapi:latest
+  
   scan:
-    needs: build
+    needs: build-and-push
     runs-on: ubuntu-latest
     
     steps:
-      - name: Download Docker image artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docker-image
-          path: .
-
-      - name: Load Docker image
-        run: |
-          gunzip -c image.tar.gz | docker load
-
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: 'keilalinhares/studentregistryapi:v${{ github.run_number }}'
+          image-ref: 'docker.io/keilalinhares/studentregistryapi:v${{ github.run_number }}'
           severity: 'HIGH,CRITICAL'
           format: 'sarif'
           output: 'trivy-results.sarif'
@@ -57,35 +45,3 @@ jobs:
         with:
           name: trivy-results
           path: trivy-results.sarif
-
-  push:
-    needs: scan
-    runs-on: ubuntu-latest
-    if: success()
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Docker Login
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.user }}
-          password: ${{ secrets.password }}
-
-      - name: Download Docker image artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docker-image
-          path: .
-
-      - name: Load Docker image
-        run: |
-          gunzip -c image.tar.gz | docker load
-
-      - name: Push Docker image
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          tags: |
-            keilalinhares/studentregistryapi:v${{ github.run_number }}
-            keilalinhares/studentregistryapi:latest
