@@ -4,9 +4,9 @@ on:
     branches: main
 
 jobs:
+  
   build-and-push:
     runs-on: ubuntu-latest
-
     steps: 
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -24,17 +24,20 @@ jobs:
           push: true
           tags: |
             keilalinhares/studentregistryapi:v${{ github.run_number }}
-
+            keilalinhares/studentregistryapi:latest
+  
+  scan:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: 'docker.io/keilalinhares/studentregistryapi:v${{ github.run_number }}'
-          severity: |
-            'HIGH'
-            'CRITICAL'
+          severity: 'HIGH,CRITICAL'
           format: 'sarif'
           output: 'trivy-results.sarif'
-          exit-code: '1'
+          exit-code: 1
 
       - name: Upload Trivy scan results
         uses: actions/upload-artifact@v4
