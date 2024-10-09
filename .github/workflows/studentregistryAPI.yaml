@@ -32,7 +32,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: 'docker.io/keilalinhares/studentregistryapi:v${{ github.run_number }}'
+          image-ref: 'keilalinhares/studentregistryapi:v${{ github.run_number }}'
           severity: 'HIGH,CRITICAL'
           format: 'sarif'
           output: 'trivy-results.sarif'
