@@ -5,9 +5,10 @@ on:
 
 jobs:
   
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
     steps: 
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -17,17 +18,15 @@ jobs:
           username: ${{ secrets.user }}
           password: ${{ secrets.password }}
         
-      - name: Build and push
+      - name: Build
         uses: docker/build-push-action@v6
         with:
           context: .
-          push: true
-          tags: |
-            keilalinhares/studentregistryapi:v${{ github.run_number }}
-            keilalinhares/studentregistryapi:latest
+          push: false
+          tags: keilalinhares/studentregistryapi:v${{ github.run_number }}
   
   scan:
-    needs: build-and-push
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Run Trivy vulnerability scanner
@@ -44,3 +43,25 @@ jobs:
         with:
           name: trivy-results
           path: trivy-results.sarif
+  
+  push:
+    runs-on: ubuntu-latest
+    steps: 
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.user }}
+          password: ${{ secrets.password }}
+        
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            keilalinhares/studentregistryapi:v${{ github.run_number }}
+            keilalinhares/studentregistryapi:latest
