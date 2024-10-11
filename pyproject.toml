@@ -12,6 +12,7 @@ pipx = "^1.7.1"
 sqlalchemy = "^2.0.35"
 psycopg = {extras = ["binary"], version = "^3.2.3"}
 uvicorn = "^0.22.0"
+python-dotenv = "^1.0.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
