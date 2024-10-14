@@ -6,8 +6,8 @@ RUN apk update && \
     libpq-dev \
     linux-headers \
     musl-dev \
-    postgresql \
-    && rm -rf /var/cache/apk/* \
+    postgresql && \
+    rm -rf /var/cache/apk/* && \
     adduser -D appuser
 
 WORKDIR /app
