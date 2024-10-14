@@ -1,4 +1,4 @@
-FROM python:3.12-alpine3.20@cb3ba1d3ac8b90cb85a4fe2a0e26a42af542f64ea86598d0409bc35493c4e561229f8d3142a23013c98b1a037495a8bf123ff977066230ab36a3a13dc92da9c4
+FROM python:3.12-alpine3.20
 
 RUN apk update && \
     apk add --no-cache \
