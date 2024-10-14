@@ -3,8 +3,8 @@ FROM python:3.12-alpine3.20@cb3ba1d3ac8b90cb85a4fe2a0e26a42af542f64ea86598d0409b
 RUN apk update && \
     apk add --no-cache \
     gcc \
-    linux-headers \
     libpq-dev \
+    linux-headers \
     musl-dev \
     postgresql \
     && rm -rf /var/cache/apk/* \
@@ -12,9 +12,8 @@ RUN apk update && \
 
 WORKDIR /app
 
-RUN pip install poetry
-
-RUN poetry config virtualenvs.create false
+RUN pip install poetry \
+    && poetry config virtualenvs.create false
 
 COPY pyproject.toml poetry.lock* /app/
 
